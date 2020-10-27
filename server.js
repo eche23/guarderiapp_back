@@ -1,8 +1,15 @@
 const dotenv = require("dotenv").config();
 const express = require("express");
+const cors = require("cors");
+const v1Router = require("./api/v1/routes");
 const app = express();
 const mongoose = require("mongoose");
 const config = require("./config")[process.env.NODE_ENV];
+
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use("/api/v1", v1Router);
 
 
 mongoose
@@ -26,7 +33,5 @@ mongoose
     console.log(`ERROR other type: ${err}`);
   });
 
-  app.get("/", function (req, res) {
-    res.send("Hello World");
-  });
+
 
