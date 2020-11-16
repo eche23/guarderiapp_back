@@ -41,7 +41,7 @@ function getChildren(req, res) {
 }
 
 function getActives(req, res) {
-  return CHILDRENModel.find()
+  return CHILDRENModel.find({ active: true })
     .then((response) => {
       res.status(200).send(response);
     })

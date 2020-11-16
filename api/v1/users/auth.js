@@ -63,6 +63,71 @@ const authAdmin = passport.authenticate("admin", {
 });
 
 passport.use(
+  "employee",
+  new JwtStrategy(
+    {
+      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+      secretOrKey: config.SECRET_TOKEN,
+    },
+    async (payload, done) => {
+      try {
+        const user = await UserModel.findOne({
+          _id: payload.id,
+          role: "EMPLOYEE",
+        });
+        if (!user) {
+          return done(null, false);
+        }
+        done(null, user);
+      } catch (error) {
+        done(error, false);
+      }
+    }
+  )
+);
+
+const authEmployee = passport.authenticate("employee", {
+  session: false,
+});
+
+passport.use(
+  "adminemployee",
+  new JwtStrategy(
+    {
+      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+      secretOrKey: config.SECRET_TOKEN,
+    },
+    async (payload, done) => {
+      try {
+        const employee = await UserModel.findOne({
+          _id: payload.id,
+          role: "EMPLOYEE",
+        });
+        const admin = await UserModel.findOne({
+          _id: payload.id,
+          role: "ADMIN",
+        });
+        if (!employee && !admin) {
+          return done(null, false);
+        }
+        if (employee) {
+          done(null, employee);
+        }
+        if (admin) {
+          done(null, admin);
+        }
+      } catch (error) {
+        done(error, false);
+      }
+    }
+  )
+);
+
+const authAdimnEmployee = passport.authenticate("adminemployee", {
+  session: false,
+});
+
+passport.use(
   "all",
   new JwtStrategy(
     {
@@ -92,5 +157,7 @@ const authAll = passport.authenticate("all", {
 module.exports = {
   authUser,
   authAdmin,
+  authEmployee,
+  authAdimnEmployee,
   authAll,
 };
