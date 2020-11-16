@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-var Schema = mongoose.Schema;
+const Schema = mongoose.Schema;
 
 const CHILDRENschema = Schema({
   children: {
@@ -154,24 +154,9 @@ const CHILDRENschema = Schema({
     },
   },
   feeding: {
-    daily_meals: {
-      type: Number,
-    },
-    hours_meals: {
-      type: Number,
-    },
-    allergies: {
-      type: Boolean,
-      required: [true, "The allergies is required"],
-    },
-    type_allergies: {
-      type: String,
-      maxlength: [250, "Maximum characters is 250"],
-    },
-    observations: {
-      type: String,
-      maxlength: [250, "Maximum characters is 250"],
-    },
+    type: Schema.Types.ObjectId,
+    ref: "feeding",
+    required: [true, "The feeding is required"],
   },
   health: {
     problems_childbirth: {
