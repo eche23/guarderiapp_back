@@ -32,39 +32,24 @@ const CHILDRENschema = Schema({
       required: [true, "The gender is required"],
     },
     address: {
-      type: {
-        type: String,
-        enum: [
-          "calle",
-          "avenida",
-          "camino",
-          "carretera",
-          "plaza",
-          "urbanizacion",
-        ],
-        required: [true, "The type is required"],
-      },
-      street: {
-        type: String,
-        required: [true, "The street is required"],
-      },
-      number: {
-        type: String,
-        required: [true, "The number is required"],
-      },
-      block: {
-        typè: String,
-      },
-      floor: {
-        type: String,
-      },
-      letter: {
-        type: String,
-      },
+      type: Schema.Types.ObjectId,
+      ref: "addresss",
+      required: [true, "The address is required"],
     },
     other_dates: {
       type: String,
       maxlength: [250, "Maximum characters is 250"],
+    },
+  },
+  documents: {
+    father_dni: {
+      type: String,
+    },
+    mother_dni: {
+      type: String,
+    },
+    health_card: {
+      type: String,
     },
   },
   father: {
@@ -166,30 +151,12 @@ const CHILDRENschema = Schema({
   sleep: {
     type: Schema.Types.ObjectId,
     ref: "sleeps",
-    required: [true, "The sleep indo is required"],
+    required: [true, "The sleep info is required"],
   },
-
   emotional_state: {
-    state: {
-      type: String,
-      enum: ["nervous", "quiet"],
-      required: [true, "The emotional state is required"],
-    },
-    observations: {
-      type: String,
-      maxlength: [250, "Maximun characters is 250"],
-    },
-  },
-  documents: {
-    father_dni: {
-      type: String,
-    },
-    mother_dni: {
-      type: String,
-    },
-    health_card: {
-      type: String,
-    },
+    type: Schema.Types.ObjectId,
+    ref: "emotional_states",
+    required: [true, "The emotional state info is required"],
   },
   billing: {},
   active: {
