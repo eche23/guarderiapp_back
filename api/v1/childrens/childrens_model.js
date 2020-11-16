@@ -163,35 +163,7 @@ const CHILDRENschema = Schema({
     ref: "healths",
     required: [true, "The health is required"],
   },
-
-  sleep: {
-    sleep_alone: {
-      type: Boolean,
-      required: [true, "The sleep alone is required"],
-    },
-    sleep_who: {
-      type: String,
-      maxlength: [250, "Maximun characters is 250"],
-    },
-    night_dream: {
-      type: String,
-      enum: ["very_good", "good", "normal", "bad", "very_bad"],
-      required: [true, "The night dream is required"],
-    },
-    sleeping_object: {
-      type: Boolean,
-      required: [true, "The sleeping object is required"],
-    },
-    type_sleeping_object: {
-      type: String,
-      maxlength: [250, "Maximun characters is 250"],
-    },
-    sleeping_posture: {
-      type: String,
-      maxlength: [250, "Maximun characters is 250"],
-      required: [true, "The sleeping posture is required"],
-    },
-  },
+  
   emotional_state: {
     state: {
       type: String,
