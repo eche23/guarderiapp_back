@@ -156,14 +156,19 @@ const CHILDRENschema = Schema({
   feeding: {
     type: Schema.Types.ObjectId,
     ref: "feedings",
-    required: [true, "The feeding is required"],
+    required: [true, "The feeding info is required"],
   },
   health: {
     type: Schema.Types.ObjectId,
     ref: "healths",
-    required: [true, "The health is required"],
+    required: [true, "The health info is required"],
   },
-  
+  sleep: {
+    type: Schema.Types.ObjectId,
+    ref: "sleeps",
+    required: [true, "The sleep indo is required"],
+  },
+
   emotional_state: {
     state: {
       type: String,
