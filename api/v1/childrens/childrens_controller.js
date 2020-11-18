@@ -1,6 +1,4 @@
 const CHILDRENModel = require("./childrens_model");
-const dotenv = require("dotenv");
-const config = require("../../../config")[process.env.NODE_ENV];
 
 module.exports = {
   createChildren,
@@ -41,7 +39,7 @@ function getChildren(req, res) {
 }
 
 function getActives(req, res) {
-  return CHILDRENModel.find()
+  return CHILDRENModel.find({ active: true })
     .then((response) => {
       res.status(200).send(response);
     })

@@ -42,102 +42,22 @@ const CHILDRENschema = Schema({
     },
   },
   documents: {
-    father_dni: {
-      type: String,
-    },
-    mother_dni: {
+    dni: {
       type: String,
     },
     health_card: {
       type: String,
     },
-  },
-  father: {
-    name: {
+    family_book: {
       type: String,
-    },
-    lastName1: {
-      type: String,
-    },
-    lastName2: {
-      type: String,
-    },
-    dni: {
-      type: String,
-    },
-    telephone: {
-      type: String,
-    },
-    email: {
-      type: String,
-    },
-    contact_email: {
-      type: Boolean,
-      default: true,
     },
   },
-  mother: {
-    name: {
-      type: String,
+  tutor: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "users",
     },
-    lastName1: {
-      type: String,
-    },
-    lastName2: {
-      type: String,
-    },
-    dni: {
-      type: String,
-    },
-    telephone: {
-      type: String,
-    },
-    email: {
-      type: String,
-    },
-    contact_email: {
-      type: Boolean,
-      default: true,
-    },
-  },
-  other_tutor: {
-    type: {
-      type: String,
-      enum: [
-        "mother",
-        "father",
-        "grandfather",
-        "grandmother",
-        "brother",
-        "sister",
-        "uncle",
-        "aunt",
-        "other",
-      ],
-    },
-    name: {
-      type: String,
-    },
-    lastName1: {
-      type: String,
-    },
-    lastName2: {
-      type: String,
-    },
-    dni: {
-      type: String,
-    },
-    telephone: {
-      type: String,
-    },
-    email: {
-      type: String,
-    },
-    contact_email: {
-      type: Boolean,
-      default: false,
-    },
-  },
+  ],
   feeding: {
     type: Schema.Types.ObjectId,
     ref: "feedings",
@@ -146,7 +66,7 @@ const CHILDRENschema = Schema({
   health: {
     type: Schema.Types.ObjectId,
     ref: "healths",
-   //required: [true, "The health info is required"],
+    //required: [true, "The health info is required"],
   },
   sleep: {
     type: Schema.Types.ObjectId,

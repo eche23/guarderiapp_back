@@ -1,12 +1,14 @@
 const router = require("express").Router();
+const pass = require("./users/auth");
 
 const addressController  = require("./address/address_controller");
 const childrenController = require("./childrens/childrens_controller");
 const emotionalStateController = require("./emotional_state/emotional_state_controller");
 const feedingController = require("./feeding/feeding_controller");
 const health = require("./health/health_controller");
-const sleep  = require("./sleep/sleep_controller");
 const rateController = require("./rates/rates_controller");
+const sleep  = require("./sleep/sleep_controller");
+const userController = require("./users/users_controller");
 
 // ADDRESS
 router.post("/address", addressController.createAddressInfo);
@@ -51,5 +53,12 @@ router.post("/sleep", sleep.createSleepInfo);
 router.patch("/sleep/:id", sleep.updateSleepInfo);
 router.get("/sleep/:id", sleep.getSleepInfo);
 router.delete("/sleep/:id", sleep.deleteSleepInfo);
+
+// USERS
+router.get("/users/:id", pass.authAdmin, userController.getUser);
+router.patch("/users/:id", pass.authAdmin, userController.updateUser);
+router.post("/users", pass.authAdmin, userController.createUser);
+router.delete("/users/:id", pass.authAdmin, userController.deleteUser);
+router.post("/login", userController.logIn);
 
 module.exports = router;
