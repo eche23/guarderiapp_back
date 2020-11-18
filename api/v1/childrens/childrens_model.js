@@ -165,7 +165,7 @@ const CHILDRENschema = Schema({
   },
 });
 
-CHILDRENschema.pre("save", function (next) {
+/* CHILDRENschema.pre("save", function (next) {
   try {
     let children = this;
     console.log(children.father.email);
@@ -177,6 +177,6 @@ CHILDRENschema.pre("save", function (next) {
   } catch (error) {
     next(error);
   }
-});
+}); */
 
 module.exports = mongoose.model("children", CHILDRENschema);
