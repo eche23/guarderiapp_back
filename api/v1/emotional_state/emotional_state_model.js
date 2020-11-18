@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const SLEEPschema = Schema({
+const EMOTIONALSTATEschema = Schema({
   emotional_state: {
     state: {
       type: String,
@@ -15,4 +15,4 @@ const SLEEPschema = Schema({
   },
 });
 
-module.exports = mongoose.model("sleep", SLEEPschema);
+module.exports = mongoose.model("emotianalstate", EMOTIONALSTATEschema);

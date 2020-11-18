@@ -1,4 +1,8 @@
 const ADDRESSmodel = require("./address_model");
+const _UPDATE_DEFAULT_CONFIG = {
+  new: true,
+  runValidators: true,
+};
 
 module.exports = {
   createAddressInfo,
@@ -29,8 +33,7 @@ function updateAddressInfo(req, res) {
     req.params.id,
     { $set: req.body },
     { new: true }
-  )
-    .then((response) => {
+  ).then((response) => {
       res.status(200).json(response);
     })
     .catch((err) => handdleError(err, res));
