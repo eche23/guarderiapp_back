@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const vars = require("./defaults");
-
 const Schema = mongoose.Schema;
-const UserSchema = new mongoose.Schema({
+
+const UserSchema = new Schema({
   password: {
     type: String,
     minlength: 7,
@@ -18,6 +18,10 @@ const UserSchema = new mongoose.Schema({
     unique: true,
     required: [true, "the field email is required"], //unique
   },
+  contact_email: {
+    type: Boolean,
+    default: true,
+  },
   active: {
     type: Boolean,
   },
@@ -26,6 +30,43 @@ const UserSchema = new mongoose.Schema({
     enum: ["USER", "ADMIN", "EMPLOYEE"],
     required: true,
     default: "USER",
+  },
+  information: {
+    type: {
+      type: String,
+      required: [true, "the type is required"],
+      enum: [
+        "Mother",
+        "Father",
+        "Brother",
+        "Sister",
+        "Grandfather",
+        "Grandmother",
+        "Uncle",
+        "Aunt",
+        "Other",
+      ],
+    },
+    name: {
+      type: String,
+    },
+    lastName1: {
+      type: String,
+    },
+    lastName2: {
+      type: String,
+    },
+    dni: {
+      type: String,
+    },
+    telephone: {
+      type: String,
+    },
+    documents: [
+      {
+        type: String,
+      },
+    ],
   },
 });
 

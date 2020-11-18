@@ -1,13 +1,11 @@
 const CHILDRENModel = require("./childrens_model");
-const dotenv = require("dotenv");
-const config = require("../../../config")[process.env.NODE_ENV];
 
 module.exports = {
   createChildren,
   updateChildren,
   getAll,
   getChildren,
-  getActives
+  getActives,
 };
 
 function createChildren(req, res) {
@@ -49,15 +47,15 @@ function getActives(req, res) {
 }
 
 function updateChildren(req, res) {
-      CHILDRENModel.findByIdAndUpdate(
-        req.params.id,
-        { $set: req.body },
-        { new: true }
-      )
-        .then((response) => {
-          res.json(response);
-        })
-        .catch((err) => handdleError(err, res));
+  return CHILDRENModel.findByIdAndUpdate(
+    req.params.id,
+    { $set: req.body },
+    { new: true }
+  )
+    .then((response) => {
+      res.json(response);
+    })
+    .catch((err) => handdleError(err, res));
 }
 
 function handdleError(err, res) {
