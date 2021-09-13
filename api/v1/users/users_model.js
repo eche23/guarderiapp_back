@@ -28,7 +28,7 @@ const UserSchema = new Schema({
   role: {
     type: String,
     enum: ["USER", "ADMIN", "EMPLOYEE"],
-    required: true,
+    required: [true, "the role is required"],
     default: "USER",
   },
   information: {
@@ -36,35 +36,42 @@ const UserSchema = new Schema({
       type: String,
       required: [true, "the type is required"],
       enum: [
-        "Mother",
-        "Father",
-        "Brother",
-        "Sister",
-        "Grandfather",
-        "Grandmother",
-        "Uncle",
-        "Aunt",
-        "Other",
+        "mother",
+        "father",
+        "brother",
+        "sister",
+        "grandfather",
+        "grandmother",
+        "uncle",
+        "aunt",
+        "other",
       ],
     },
     name: {
       type: String,
+      required: [true, "Name is required"],
     },
     lastName1: {
       type: String,
+      required: [true, "Last Name 1 is required"],
     },
     lastName2: {
       type: String,
     },
     dni: {
       type: String,
+      unique: true,
+      required: [true, "DNI is required"],
     },
     telephone: {
       type: String,
+      required: [true, "Telephone is required"],
     },
     documents: [
       {
-        type: String,
+        dni: {
+          type: String
+        }
       },
     ],
   },

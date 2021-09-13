@@ -26,6 +26,7 @@ function getUser(req, res) {
 }
 
 function createUser(req, res) {
+  console.log(req.body);
   return Users.create(req.body)
     .then((user) => {
       sendEmail(
