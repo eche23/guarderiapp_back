@@ -36,7 +36,7 @@ const CHILDRENschema = Schema({
       ref: "addresss",
       required: [true, "The address is required"],
     },
-    other_dates: {
+    other_data: {
       type: String,
       maxlength: [250, "Maximum characters is 250"],
     },

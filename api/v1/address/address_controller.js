@@ -1,8 +1,4 @@
 const ADDRESSmodel = require("./address_model");
-const _UPDATE_DEFAULT_CONFIG = {
-  new: true,
-  runValidators: true,
-};
 
 module.exports = {
   createAddressInfo,
@@ -11,7 +7,8 @@ module.exports = {
   updateAddressInfo,
 };
 
-function createAddressInfo() {
+function createAddressInfo(req, res) {
+  console.log(req.body);
   return ADDRESSmodel.create(req.body)
     .then((response) => {
       res.status(200).json(response);
@@ -22,7 +19,7 @@ function createAddressInfo() {
     });
 }
 
-function getAddressInfo() {
+function getAddressInfo(req, res) {
   return ADDRESSmodel.findById(req.params.id)
     .then((data) => res.status(200).json(data))
     .catch((err) => handdleError(err, res));
@@ -33,7 +30,8 @@ function updateAddressInfo(req, res) {
     req.params.id,
     { $set: req.body },
     { new: true }
-  ).then((response) => {
+  )
+    .then((response) => {
       res.status(200).json(response);
     })
     .catch((err) => handdleError(err, res));

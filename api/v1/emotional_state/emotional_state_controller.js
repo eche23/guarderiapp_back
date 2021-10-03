@@ -7,7 +7,7 @@ module.exports = {
   updateEmotionalStateInfo,
 };
 
-function createEmotionalStateInfo() {
+function createEmotionalStateInfo(req, res) {
   return EMOTIONALSTATEmodel.create(req.body)
     .then((response) => {
       res.status(200).json(response);

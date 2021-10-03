@@ -123,7 +123,7 @@ passport.use(
   )
 );
 
-const authAdimnEmployee = passport.authenticate("adminemployee", {
+const authAdminEmployee = passport.authenticate("adminemployee", {
   session: false,
 });
 
@@ -158,6 +158,6 @@ module.exports = {
   authUser,
   authAdmin,
   authEmployee,
-  authAdimnEmployee,
+  authAdminEmployee,
   authAll,
 };

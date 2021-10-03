@@ -2,17 +2,9 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const ADDRESSschme = Schema({
-  address: {
     type: {
       type: String,
-      enum: [
-        "calle",
-        "avenida",
-        "camino",
-        "carretera",
-        "plaza",
-        "urbanizacion",
-      ],
+      enum: ["street", "avenue", "way", "road", "square", "urbanization"],
       required: [true, "The type is required"],
     },
     street: {
@@ -24,7 +16,7 @@ const ADDRESSschme = Schema({
       required: [true, "The number is required"],
     },
     block: {
-      typè: String,
+      type: String,
     },
     floor: {
       type: String,
@@ -32,7 +24,6 @@ const ADDRESSschme = Schema({
     letter: {
       type: String,
     },
-  },
 });
 
 module.exports = mongoose.model("address", ADDRESSschme);
