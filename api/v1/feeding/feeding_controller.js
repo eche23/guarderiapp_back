@@ -7,7 +7,7 @@ module.exports = {
   updateFeedingInfo,
 };
 
-function createFeedingInfo() {
+function createFeedingInfo(req, res) {
   return FEEDINGmodel.create(req.body)
     .then((response) => {
       res.status(200).json(response);

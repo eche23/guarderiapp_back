@@ -63,6 +63,11 @@ const UserSchema = new Schema({
       unique: true,
       required: [true, "DNI is required"],
     },
+    address: {
+      type: Schema.Types.ObjectId,
+      ref: "addresss",
+      required: [true, "The address is required"],
+    },
     telephone: {
       type: String,
       required: [true, "Telephone is required"],

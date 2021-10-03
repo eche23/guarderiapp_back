@@ -7,7 +7,7 @@ module.exports = {
   updateSleepInfo,
 };
 
-function createSleepInfo() {
+function createSleepInfo(req, res) {
   return SLEEPmodel.create(req.body)
     .then((response) => {
       res.status(200).json(response);

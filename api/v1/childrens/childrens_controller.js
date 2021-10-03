@@ -9,12 +9,12 @@ module.exports = {
 };
 
 function createChildren(req, res) {
+  console.log(req.body);
   return CHILDRENModel.create(req.body)
     .then((response) => {
       res.status(200).json(response);
     })
     .catch((err) => {
-      console.log(err);
       handdleError(err, res);
     });
 }

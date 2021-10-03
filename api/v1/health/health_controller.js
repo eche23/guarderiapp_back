@@ -7,7 +7,7 @@ module.exports = {
   updateHealthInfo,
 };
 
-function createHealthInfo() {
+function createHealthInfo(req, res) {
   return HEALTHmodel.create(req.body)
     .then((response) => {
       res.status(200).json(response);

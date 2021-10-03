@@ -1,4 +1,4 @@
-const Users = require("./users_model");
+const usersMODEL = require("./users_model");
 const nodemailer = require("nodemailer");
 const dotenv = require("dotenv");
 const config = require("../../../config")[process.env.NODE_ENV];
@@ -18,7 +18,7 @@ module.exports = {
 };
 
 function getUser(req, res) {
-  return Users.findById(req.params.id)
+  return usersMODEL.findById(req.params.id)
     .then((result) => {
       res.status(200).send(result);
     })
@@ -27,7 +27,8 @@ function getUser(req, res) {
 
 function createUser(req, res) {
   console.log(req.body);
-  return Users.create(req.body)
+  return usersMODEL
+    .create(req.body)
     .then((user) => {
       sendEmail(
         user.email,
@@ -50,14 +51,12 @@ function createUser(req, res) {
       };
       return res.status(200).send(userResponde);
     })
-    .catch((err) => {
-      res.status(400).send(err);
-    });
+    .catch((err) => handdleError(err, res));
 }
 
 function logIn(req, res) {
   if (req.body.password && req.body.email) {
-    Users.findOne({
+    usersMODEL.findOne({
       email: req.body.email,
     })
       .select("_id password role sportInfo.license_number")
@@ -98,11 +97,8 @@ function logIn(req, res) {
 
 //To do: Tests in front
 function updateUser(req, res) {
-  return Users.findByIdAndUpdate(
-    req.params.id,
-    req.body,
-    _UPDATE_DEFAULT_CONFIG
-  )
+  return usersMODEL
+    .findByIdAndUpdate(req.params.id, req.body, _UPDATE_DEFAULT_CONFIG)
     .then((result) => {
       if (result) {
         res.status(200).json(result);
@@ -110,20 +106,17 @@ function updateUser(req, res) {
         res.status(400).json({ err: "there is no user" });
       }
     })
-    .catch((err) => {
-      res.status(400).json(err);
-    });
+    .catch((err) => handdleError(err, res));
 }
 
 function deleteUser(req, res) {
-  return Users.findById(req.params.id)
+  return usersMODEL
+    .findById(req.params.id)
     .deleteOne()
     .then((result) => {
       res.status(400).send(result);
     })
-    .catch((err) => {
-      res.status(400).send(err);
-    });
+    .catch((err) => handdleError(err, res));
 }
 
 function sendEmail(email, subject, html) {
@@ -152,4 +145,8 @@ function sendEmail(email, subject, html) {
       console.log("Email sent: " + info.response);
     }
   });
+}
+
+function handdleError(err, res) {
+  return res.status(400).json(err);
 }
