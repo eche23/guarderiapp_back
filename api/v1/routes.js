@@ -2,7 +2,6 @@ const router = require("express").Router();
 const pass = require("./users/auth");
 
 const addressController = require("./address/address_controller");
-const checkinController = require("./check-in/checkin_controller");
 const childrenController = require("./childrens/childrens_controller");
 const emotionalStateController = require("./emotional_state/emotional_state_controller");
 const feedingController = require("./feeding/feeding_controller");
@@ -99,16 +98,6 @@ router.post("/users", userController.createUser);
 router.delete("/users/:id", userController.deleteUser);
 router.post("/login", userController.logIn);
 
-//CHECKIN
-router.post("/checkin", checkinController.createCheckIn);
-router.patch(
-  "/checkin/:id",
-  checkinController.updateCheckIn
-);
-router.get("/checkin/", checkinController.getCheckIn);
-router.delete(
-  "/checkin/:id",
-  checkinController.deleteCheckIn
-);
+
 module.exports = router;
 
