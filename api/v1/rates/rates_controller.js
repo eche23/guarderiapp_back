@@ -49,8 +49,8 @@ function updateRate(req, res) {
 }
 
 function deleteRate(req, res) {
-  let eventID = req.params.id;
-  return RATESModel.findOne({ _id: eventID })
+  let rateID = req.params.id;
+  return RATESModel.findOne({ _id: rateID })
     .then(async (event) => {
       if (event == null || event == undefined) {
         return res.status(404).send("The rate doesn't exist");
