@@ -42,6 +42,7 @@ function getActives(req, res) {
   return CHILDRENModel.find({ active: true })
     .then((response) => {
       res.status(200).send(response);
+      console.log(response);
     })
     .catch((err) => handdleError(err, res));
 }

@@ -10,34 +10,24 @@ const rateController = require("./rates/rates_controller");
 const sleep = require("./sleep/sleep_controller");
 const userController = require("./users/users_controller");
 
+const registerController = require("./register/register_controller");
+
 // ADDRESS
 router.post("/address", addressController.createAddressInfo);
-router.patch(
-  "/address/:id",
-  addressController.updateAddressInfo
-);
+router.patch("/address/:id", addressController.updateAddressInfo);
 router.get("/address/:id", addressController.getAddressInfo);
-router.delete(
-  "/address/:id",
-  addressController.deleteAddressInfo
-);
+router.delete("/address/:id", addressController.deleteAddressInfo);
 
 // CHILDRENS
 router.post("/childrens", childrenController.createChildren);
-router.patch(
-  "/childrens/:id",
-  childrenController.updateChildren
-);
+router.patch("/childrens/:id", childrenController.updateChildren);
 router.get("/childrens", pass.authAdminEmployee, childrenController.getAll);
 router.get(
   "/childrens/:id",
-  pass.authAdminEmployee,
+  
   childrenController.getChildren
 );
-router.get(
-  "/childrens_actives",
-  childrenController.getActives
-);
+router.get("/childrens_actives", childrenController.getActives);
 
 // EMOTIONAL STATE
 router.post(
@@ -59,15 +49,9 @@ router.delete(
 
 // FEEDING
 router.post("/feeding", feedingController.createFeedingInfo);
-router.patch(
-  "/feeding/:id",
-  feedingController.updateFeedingInfo
-);
+router.patch("/feeding/:id", feedingController.updateFeedingInfo);
 router.get("/feeding/:id", feedingController.getFeedingInfo);
-router.delete(
-  "/feeding/:id",
-  feedingController.deleteFeedingInfo
-);
+router.delete("/feeding/:id", feedingController.deleteFeedingInfo);
 
 // HEALTH
 router.post("/health", health.createHealthInfo);
@@ -82,13 +66,15 @@ router.get("/rates", rateController.getAll);
 router.get("/rates/:id", rateController.getRate);
 router.delete("/rates/:id", rateController.deleteRate);
 
+//REGISTER
+router.post("/register", registerController.createDay);
+router.post("/in", registerController.registerIn);
+router.post("/out", registerController.registerOut);
+
 // SLEEP
 router.post("/sleep", sleep.createSleepInfo);
 router.patch("/sleep/:id", sleep.updateSleepInfo);
-router.get(
-  "/sleep/:id",
-  sleep.getSleepInfo
-);
+router.get("/sleep/:id", sleep.getSleepInfo);
 router.delete("/sleep/:id", sleep.deleteSleepInfo);
 
 // USERS
@@ -98,6 +84,4 @@ router.post("/users", userController.createUser);
 router.delete("/users/:id", userController.deleteUser);
 router.post("/login", userController.logIn);
 
-
 module.exports = router;
-

@@ -18,7 +18,7 @@ const CHILDRENschema = Schema({
       type: String,
     },
     birthdate: {
-      type: String,
+      type: Date,
       required: [true, "The birthdate is required"],
     },
     rate: {
@@ -61,22 +61,22 @@ const CHILDRENschema = Schema({
   feeding: {
     type: Schema.Types.ObjectId,
     ref: "feedings",
-    //required: [true, "The feeding info is required"],
+    required: [true, "The feeding info is required"],
   },
   health: {
     type: Schema.Types.ObjectId,
     ref: "healths",
-    //required: [true, "The health info is required"],
+    required: [true, "The health info is required"],
   },
   sleep: {
     type: Schema.Types.ObjectId,
     ref: "sleeps",
-    //required: [true, "The sleep info is required"],
+    required: [true, "The sleep info is required"],
   },
   emotional_state: {
     type: Schema.Types.ObjectId,
     ref: "emotional_states",
-    //required: [true, "The emotional state info is required"],
+    required: [true, "The emotional state info is required"],
   },
   billing: {},
   active: {
