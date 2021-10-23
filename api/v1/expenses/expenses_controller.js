@@ -8,6 +8,7 @@ module.exports = {
 };
 
 function createDB(req, res) {
+  console.log(req.body);
   return EXPENSEmodel.create(req.body)
     .then((response) => {
       res.status(200).json(response);
